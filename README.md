@@ -1,4 +1,8 @@
 # openurl
+[![GitHub release](https://img.shields.io/github/release/jo1gi/openurl.svg)](https://github.com/jo1gi/openurl/releases)
+![GitHub top language](https://img.shields.io/github/languages/top/jo1gi/openurl)
+![License](https://img.shields.io/github/license/jo1gi/openurl)
+
 Opens urls based on rules in a yaml file.
 
 ## Usage
