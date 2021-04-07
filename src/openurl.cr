@@ -1,4 +1,5 @@
 require "yaml"
+require "./args"
 
 # Stores all of the available rules for urls to be tested against
 tests = {
@@ -60,17 +61,19 @@ def find_command(url : String, config, tests)
   end
 end
 
-if ARGV.size > 0
-  config = load_config(find_config)
-  result = find_command(ARGV[0], config, tests)
-  if result.nil?
-    abort "Could not find matching program"
-  end
-  split = result.split(' ')
-  command = split[0]
-  args = split[1..]
-  args.push(ARGV[0])
-  Process.run(command, args: args)
-else
-  abort "An argument is required"
+# Loading arguments
+opts = Args.new
+# Loading config file
+config_path = opts.config || find_config
+config = load_config(config_path)
+# Finding command
+result = find_command(opts.url.not_nil!, config, tests)
+if result.nil?
+  abort "Could not find matching program"
 end
+# Running command
+split = result.split(' ')
+command = split[0]
+args = split[1..]
+args.push(opts.url)
+Process.run(command, args: args)
