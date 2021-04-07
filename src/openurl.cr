@@ -73,10 +73,13 @@ if result.nil?
   abort "Could not find matching program"
 end
 # Running command
+result = result.gsub("{URL}", opts.url)
 split = result.split(' ')
 command = split[0]
 args = split[1..]
-args.push(opts.url)
+if !result.includes?("{URL}")
+  args.push(opts.url)
+end
 (0..args.size-1).each do |i|
   if args[i][0] == '~'
     args[i] = ENV["HOME"] + args[i][1..]
