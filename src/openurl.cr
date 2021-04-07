@@ -3,10 +3,10 @@ require "./args"
 
 # Stores all of the available rules for urls to be tested against
 tests = {
-  "protocol" => /^[^:]+/,
-  "domain" => /(?<=:\/\/)[^\/]+/,
+  "protocol"  => /^[^:]+/,
+  "domain"    => /(?<=:\/\/)[^\/]+/,
   "last_file" => /[^\/]+$/,
-  "filetype" => /(?<=\.)[^\.\/]+$/
+  "filetype"  => /(?<=\.)[^\.\/]+$/,
 }
 
 # Tests a url on a specific regex parameter from `tests`
@@ -27,7 +27,7 @@ def load_config(path)
 end
 
 # Returns the path of the default config file
-def find_config() : String
+def find_config : String
   "#{ENV["XDG_CONFIG_HOME"]}/openurl/config.yaml"
 end
 
@@ -37,12 +37,12 @@ def test_command(url, option, tests) : Bool
     return false
   end
   tests.each do |name, test|
-      if option[name]?
-        if make_regex_test(url, test, option[name].as_s)
-          next
-        end
-	return false
+    if option[name]?
+      if make_regex_test(url, test, option[name].as_s)
+        next
       end
+      return false
+    end
   end
   return true
 end
@@ -80,7 +80,7 @@ args = split[1..]
 if !result.includes?("{URL}")
   args.push(opts.url)
 end
-(0..args.size-1).each do |i|
+(0..args.size - 1).each do |i|
   if args[i][0] == '~'
     args[i] = ENV["HOME"] + args[i][1..]
   end

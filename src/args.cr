@@ -5,7 +5,7 @@ class Args
   getter output = false
   getter url : String = ""
 
-  def initialize()
+  def initialize
     OptionParser.parse do |parser|
       parser.banner = "Usage: openurl [options] URL"
       parser.on("-c CONFIG", "--config CONFIG", "Path to alternative config file") { |c| @config = c }
