@@ -5,7 +5,8 @@ require "./args"
 tests = {
   "protocol" => /^[^:]+/,
   "domain" => /(?<=:\/\/)[^\/]+/,
-  "last_file" => /[^\/]+$/
+  "last_file" => /[^\/]+$/,
+  "filetype" => /(?<=\.)[^\.\/]+$/
 }
 
 # Tests a url on a specific regex parameter from `tests`
@@ -76,4 +77,9 @@ split = result.split(' ')
 command = split[0]
 args = split[1..]
 args.push(opts.url)
+(0..args.size-1).each do |i|
+  if args[i][0] == '~'
+    args[i] = ENV["HOME"] + args[i][1..]
+  end
+end
 Process.run(command, args: args)
