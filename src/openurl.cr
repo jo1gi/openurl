@@ -85,4 +85,4 @@ end
     args[i] = ENV["HOME"] + args[i][1..]
   end
 end
-Process.run(command, args: args)
+Process.run(command, args: args, output: opts.output ? STDOUT : Process::Redirect::Close)
