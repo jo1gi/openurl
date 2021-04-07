@@ -19,6 +19,9 @@ class Args
           abort "An url is required"
         end
       end
+      parser.invalid_option do |flag|
+        abort "ERROR: '#{flag}' is not a valid option."
+      end
     end
   end
 end
