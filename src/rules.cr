@@ -20,7 +20,6 @@ module Rules
     return false
   end
 
-
   # Tests if a set of rules match the url
   def test_command(url : String, option) : Bool
     if !option["command"]?
@@ -28,10 +27,10 @@ module Rules
     end
     @@rules.each do |name, test|
       if option[name]?
-	if make_regex_test(url, test, option[name].as_s)
-	  next
-	end
-	return false
+        if make_regex_test(url, test, option[name].as_s)
+          next
+        end
+        return false
       end
     end
     return true
@@ -41,13 +40,13 @@ module Rules
   def find_command(url : String, config)
     config.as_a.each do |c|
       if test_command(url, c)
-	if c["subrules"]
-	  subrules = find_command(url, c["subrules"])
-	  if subrules
-	    return subrules
-	  end
-	end
-	return c["command"].as_s.not_nil!
+        if c["subrules"]
+          subrules = find_command(url, c["subrules"])
+          if subrules
+            return subrules
+          end
+        end
+        return c["command"].as_s.not_nil!
       end
     end
   end
