@@ -15,4 +15,4 @@ if result.nil?
 end
 # Running command
 command, args = Command.parse_command(result, opts.url)
-Process.run(command, args: args, output: opts.output ? STDOUT : Process::Redirect::Close)
+Process.run(command, args: args, output: opts.output ? STDOUT : Process::Redirect::Close, input: STDIN, shell: true)
