@@ -1,5 +1,6 @@
 require "yaml"
 require "mime"
+require "colorize"
 
 module Config
   extend self
@@ -13,13 +14,11 @@ module Config
 
   # Returns the path of the default config file
   def find_config : String
-    dirs = ["#{ENV["XDG_CONFIG_HOME"]}/openurl", "~/.config/openurl"]
-    dirs.each do |dir|
-      path = "#{dir}/config.yaml"
-      if File.exists?(path)
-        return path
-      end
+    config_dir = ENV["XDG_CONFIG_HOME"]? || "#{ENV["HOME"]?}/.config"
+    path = "#{config_dir}/openurl/config.yaml"
+    if File.exists?(path)
+      return path
     end
-    abort "Could not find config file"
+    abort "Could not find config file\nThe config should be placed: #{path.colorize(:blue)}"
   end
 end

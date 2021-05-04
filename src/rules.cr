@@ -7,7 +7,7 @@ module Rules
     "domain"    => /(?<=:\/\/)[^\/]+/,
     "last_file" => /[^\/]+$/,
     "filetype"  => /(?<=\.)[^\.\/]+$/,
-    "url"       => /./,
+    "url"       => /.+/,
   }
 
   # Tests a url on a specific regex parameter from `tests`
