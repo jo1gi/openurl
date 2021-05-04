@@ -2,7 +2,7 @@
 [![GitHub release](https://img.shields.io/github/release/jo1gi/openurl.svg)](https://github.com/jo1gi/openurl/releases)
 ![GitHub top language](https://img.shields.io/github/languages/top/jo1gi/openurl)
 ![License](https://img.shields.io/github/license/jo1gi/openurl)
-![Travis (.org)](https://img.shields.io/travis/jo1gi/openurl)
+![Build](https://img.shields.io/github/workflow/status/jo1gi/openurl/tests)
 
 Opens urls based on rules in a yaml file.
 
@@ -20,7 +20,7 @@ opened through firefox, and gemini capsules are opened in amfora.
 ```yaml
 - protocol: https?
   command: firefox
-  subcommands:
+  subrules:
     - domain: youtube.com
       command: vlc
 

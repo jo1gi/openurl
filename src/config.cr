@@ -1,6 +1,5 @@
 require "yaml"
 require "mime"
-require "colorize"
 
 module Config
   extend self
@@ -19,6 +18,6 @@ module Config
     if File.exists?(path)
       return path
     end
-    abort "Could not find config file\nThe config should be placed: #{path.colorize(:blue)}"
+    abort "Could not find config file\nThe config should be placed: #{path}"
   end
 end
