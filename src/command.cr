@@ -1,14 +1,38 @@
 module Command
   extend self
 
-  # Replace ~ with home path
+  # Replace ~/ in the start of an argument with home path
   private def add_homepath(args : Array(String)) : Array(String)
-    (0..args.size - 1).each do |i|
-      if args[i][0] == '~'
+    (1..args.size - 1).each do |i|
+      if args[i][0..1] == "~/"
         args[i] = ENV["HOME"] + args[i][1..]
       end
     end
     return args
+  end
+
+  # Splits command into individual parts with support for quotation
+  private def split_command(command : String) : Array(String)
+    output = [] of String
+    quote = false
+    current = ""
+    command.each_char do |c|
+      case c
+      when '"'
+	quote = !quote
+      when ' '
+	if !quote
+	  output.push(current)
+	  current = ""
+	else
+	  current += c
+	end
+      else
+	current += c
+      end
+    end
+    output.push(current)
+    return output
   end
 
   # Parses command and splits it up into the command and arguments
@@ -18,7 +42,8 @@ module Command
       part_added = true
       command = command.gsub("{URL}", url)
     end
-    parts = command.split(' ')
+    parts = add_homepath split_command command
+    puts parts
     if !part_added
       parts.push(url)
     end
