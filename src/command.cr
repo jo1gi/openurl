@@ -43,7 +43,6 @@ module Command
       command = command.gsub("{URL}", url)
     end
     parts = add_homepath split_command command
-    puts parts
     if !part_added
       parts.push(url)
     end
