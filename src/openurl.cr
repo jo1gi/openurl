@@ -11,7 +11,11 @@ def open_link(url : String, config, opts)
   end
   # Running command
   command, args = Command.parse_command(result, url)
-  Process.run(command, args: args, output: opts.output ? STDOUT : Process::Redirect::Close, input: STDIN, shell: true)
+  if opts.no_run
+    puts "#{command} #{args.join(' ')}"
+  elsif
+    Process.run(command, args: args, output: opts.output ? STDOUT : Process::Redirect::Close, input: STDIN, shell: true)
+  end
 end
 
 # Loading command line arguments

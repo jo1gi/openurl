@@ -3,6 +3,7 @@ require "option_parser"
 class Args
   getter config : String | Nil
   getter output = false
+  getter no_run = false
   getter urls = [] of String
 
   def initialize
@@ -10,6 +11,7 @@ class Args
       parser.banner = "Usage: openurl [options] URL"
       parser.on("-c CONFIG", "--config CONFIG", "Path to alternative config file") { |c| @config = c }
       parser.on("-s", "--show-output", "Display the output of the command") { @output = true }
+      parser.on("-n", "--no-run", "Prints command instead of running it") { @no_run = true }
       parser.on("-f FILE", "--file FILE", "Open all links in a file") { |f|
 	if !File.exists?(f)
 	  abort "File '#{f}' does not exist"
