@@ -37,7 +37,10 @@ module Rules
   end
 
   # Finds a command in the rules which the url matches
-  def find_command(url : String, config)
+  def find_command(url : String, config : YAML::Any)
+    if !config.as_a?
+      return nil
+    end
     config.as_a.each do |c|
       if test_rule(url, c)
         if c["subrules"]?
