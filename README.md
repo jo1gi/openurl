@@ -36,11 +36,11 @@ Each rules is comprised of a list of attributes that can be tested. Each
 attribute corresponds with a part of the url. This part will be checked to see
 if the given regex matches.
 
-| Attribute | Description                                     | Example                                                                        |
-|-----------|-------------------------------------------------|--------------------------------------------------------------------------------|
-| protocol  | Communication protocol                          | **https**://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso |
-| domain    | Website domain name and subdomain               | https://**channels.nixos.org**/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso |
-| last_file | Last part of path                               | https://channels.nixos.org/nixos-21.05/**latest-nixos-gnome-x86_64-linux.iso** |
-| filetype  | File extension if it exists                     | https://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.**iso** |
-| path      | Anything after the domain and before parameters | https://channels.nixos.org/**nixos-21.05/latest-nixos-gnome-x86_64-linux.iso** |
-| url       | Matches everything                              | **https://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso** |
+| Attrubute | Description                                     | Example                                                                           |
+|-----------|-------------------------------------------------|-----------------------------------------------------------------------------------|
+| protocol  | Communication protocol                          | <b>https</b>://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso |
+| domain    | Website domain name and subdomain               | https://<b>channels.nixos.org</b>/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso |
+| last_file | Last part of path                               | https://channels.nixos.org/nixos-21.05/<b>latest-nixos-gnome-x86_64-linux.iso</b> |
+| filetype  | File extension if it exists                     | https://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.<b>iso</b> |
+| path      | Anything after the domain and before parameters | https://channels.nixos.org/<b>nixos-21.05/latest-nixos-gnome-x86_64-linux.iso</b> |
+| url       | Matches everything                              | <b>https://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso</b> |
