@@ -27,3 +27,20 @@ opened through firefox, and gemini capsules are opened in amfora.
 - protocol: gemini
   command: amfora
 ```
+
+The program checks each rule one by one. When it finds a rule set that matches
+the url, it will check if any subrules match the url. When the first matching
+rule is found, the corresponding command will be run with the url appended.
+
+Each rules is comprised of a list of attributes that can be tested. Each
+attribute corresponds with a part of the url. This part will be checked to see
+if the given regex matches.
+
+| Attribute | Description                                     | Example                                                                        |
+|-----------|-------------------------------------------------|--------------------------------------------------------------------------------|
+| protocol  | Communication protocol                          | **https**://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso |
+| domain    | Website domain name and subdomain               | https://**channels.nixos.org**/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso |
+| last_file | Last part of path                               | https://channels.nixos.org/nixos-21.05/**latest-nixos-gnome-x86_64-linux.iso** |
+| filetype  | File extension if it exists                     | https://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.**iso** |
+| path      | Anything after the domain and before parameters | https://channels.nixos.org/**nixos-21.05/latest-nixos-gnome-x86_64-linux.iso** |
+| url       | Matches everything                              | **https://channels.nixos.org/nixos-21.05/latest-nixos-gnome-x86_64-linux.iso** |
